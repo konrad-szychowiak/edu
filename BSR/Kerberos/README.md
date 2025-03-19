@@ -1,52 +1,76 @@
 # Kerberos
 
-Kerberos to rozproszony system kryptograficznego uwierzytelniania z zaufaną stroną trzecią. Rolę tej strony,
-której ufają wszystkie podmioty systemu (principals), pełni serwer KDC (Key Distribution Center) realizujący
-usługi uwierzytelniania oraz – potencjalnie (choć w praktyce rzadko w pełni tego znaczenia) – autoryzacji. System
-używa centralnego rejestru danych uwierzytelniających (credentials). Podmioty (użytkownicy, komputery,
-aplikacje) otrzymują z centrum KDC bilet (ticket) zawierający m.in. klucz sesji (session key) wykorzystywany
-w dostępie do poszczególnych usług, np. zdalnego logowania, drukowania itd. Każdy komputer kliencki i każdy
-użytkownik w domenie uwierzytelniania (realm) musi zostać do niej indywidualnie dołączony.
+![Static Badge](https://img.shields.io/badge/version-v0-blue?style=for-the-badge)
 
-## Ćwiczenia
+Kerberos is a distributed cryptographic authentication system with a trusted third party. The role of this party,
+The role of this party, which is trusted by all the entities in the system (principals), is performed by the KDC (Key
+Distribution Center) server, which performs the
+authentication and - potentially (though rarely in practice to the full extent of its meaning) - authorisation services.
+The system
+uses a central register of credentials. Entities (users, computers
+applications) receive a ticket from the KDC containing, among other things, the session key used to access individual
+services, e.g. for
+The ticket contains, among other things, the session key for accessing specific services, e.g. remote login, printing,
+etc. Each client computer and each
+user in the authentication domain (realm) must be individually attached to it.
 
-W tym ćwiczeniu będziemy pracować w grupach minimum 3 osób. Role będą następujące:
+## Preparation
 
-* **KDC** (ang. _key distribution center_) – serwer Kerberosa pod adresem, `kdc.lan.lab`,
-* **Server** – serwer usługi sieciowej, do której będziemy chcieli uzyskać dostęp, `server.lan.lab`, oraz
-* **Client** – maszyna klienta, z której będziemy próbować się dostać do usługi, `client.lan.lab`.
+In this exercise you will work in groups of 3 people (at the minimum).
+You will divide between yourselves the following roles:
+
+* **KDC** – key distribution centre – Kerberos server at the domain address `kdc.lan.lab`,
+* **Server** - the web service server we will want to access, `server.lan.lab`, and
+* **Client** - the client machine from which we will attempt to access the service, `client.lan.lab`.
+
+> [!NOTE]
+> If more students join your group, every person over the initial number of 3
+> should prepare another **service** server.
+> Then, whoever takes the role of the **client** will have to check with all the servers
+> before continuing to the next checkpoint.
+
+First, once you know which role you are responsible for,
+start by setting your hostname to the corresponding domain name:
+
+```shell
+hostname <DOMAIN_NAME>
+```
+
+> [!CAUTION]
+> Remember! Don't copy code snippets without thinking.
+> Check and compare with the examples in the files and the configuration already done by you and others in your group.
+
+
+Now, we will make sure _each_ machine is ready to use Kerberos.
+The laboratory will require the following packages: `krb5`, `krb5-client` and `krb5-server`.
+You should check if your system has them:
+
+```shell
+# check what is already installed
+sudo zypper se krb5
+``` 
+
+<details>
+<summary>If any package is missing, install it.</summary>
+
+To install the packages, use:
+
+```shell
+sudo zypper in krb5 krb5-server krb5-client
+```
+
+Of course, if only some are missing, you can install only those.
+</details>
+
+## Exercises
+
+The next steps are divided into the three roles mentioned earlier.
 
 > [!TIP]
-> Jeśli w grupie wypadnie więcej osób, to kolejne osoby powinny przygotować kolejne serwery **usług**.
+> Some of the steps can be done in parallel; look for hints in the tutorials.
+> Also, while waiting for other students to finish, you can help them do their part
+> to get more out of the exercises.
 
-Pierwszym krokiem na każdej maszynie będzie sprawdzenie, czy zainstalowane są wymagane pakiety kerberosa:
-
-```sh
-# warto wykonać polecenia jako root, żeby zaktualizować od razu indeksy pakietów
-student> sudo -i
-
-# sprawdzamy, co już jest zainstalowane
-root# zypper se krb5
-
-#instalujemy pakiety (jeśli jakiś brakuje)
-root# zypper in krb5 krb5-server krb5-client
-```
-
-## KDC
-
-Trzeba przygotować konfigurację kerberosa w pliku `/etc/krb5.conf`:
-
-```toml
-[libdefaults]
-    default_realm = LAB.LAN
-    dns_lookup_kdc = false
-    dns_lookup_realm = false
-[realms]
-    LAB.LAN = {
-        kdc = kdc.lab.lan
-        admin_server = kdc.lab.lan
-    }
-[domain_realm]
-    .lab.lan = LAB.LAN
-```
-
+The tasks for [KDC](KDC.md) are discussed first,
+followed by [server](#server) and [client](#client).
+Those links will led you to your sections.
