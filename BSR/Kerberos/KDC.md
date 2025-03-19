@@ -86,7 +86,7 @@ kdc# service kadmind start
 > [!TIP]
 > For simple verification of the result, you can view the contents of the domain registry:
 ```console
-root@kdc:~# kdb5_util dump
+kdc:~# kdb5_util dump
 ```
 
 Once the services are started, let the others in the group know that you've reached checkpoint 2.
