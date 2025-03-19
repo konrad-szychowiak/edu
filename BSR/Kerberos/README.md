@@ -72,5 +72,5 @@ The next steps are divided into the three roles mentioned earlier.
 > to get more out of the exercises.
 
 The tasks for [KDC](KDC.md) are discussed first,
-followed by [server](#server) and [client](#client).
+followed by [server](Server.md) and [client](#client).
 Those links will led you to your sections.

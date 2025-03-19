@@ -1,4 +1,4 @@
-# Key Distribution Center
+# `kdc.lab.lan`
 
 ## Set-up
 > [!NOTE]
@@ -67,9 +67,14 @@ In order to do this, we need to initialise the KDC's database first:
 kdc:~# kdb5_util create -r LAB.LAN -s
 ```
 
-6 Now, to access the administration console, we will use:
+Now, to access the administration console, we will use:
 ```console
 kdc:~# kadmin.local
+```
+
+Once in the console, run the following commands to create new principals and add them to the _key tab_.
+
+```console
 kadmin.local: addprinc admin/admin
 kadmin.local: addprinc student
 kadmin.local: ktadd -k /var/lib/kerberos/krb5kdc/kadm5.keytab kadmin/admin kadmin/changepw
@@ -85,10 +90,22 @@ kdc:~# service kadmind start
 
 > [!TIP]
 > For simple verification of the result, you can view the contents of the domain registry:
-```console
-kdc:~# kdb5_util dump
-```
+> ```console
+> kdc:~# kdb5_util dump
+> ```
 
 Once the services are started, let the others in the group know that you've reached checkpoint 2.
 
 # Checkpoint 2
+
+In checkpoint 2, client and server(s) will add principals for their machine
+(starting with `host/` in the name).
+To see if they have created the principals successfully, run:
+```console
+kadmin.local: listprincs
+```
+
+If there are any problems, look through the logs of the Kerberos server:
+```console
+kdc:~# tail -f /var/log/krb5/krb5kdc.log
+```
