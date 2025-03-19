@@ -64,23 +64,23 @@ Modify the ACLs for the KDC. In the `/var/lib/kerberos/krb5kdc/kadm5.acl` file. 
 Next, we will want to create users.
 In order to do this, we need to initialise the KDC's database first:
 ```console
-kdc# kdb5_util create -r LAB.LAN -s
+kdc:~# kdb5_util create -r LAB.LAN -s
 ```
 
 6 Now, to access the administration console, we will use:
 ```console
-kdc# kadmin.local
+kdc:~# kadmin.local
 kadmin.local: addprinc admin/admin
 kadmin.local: addprinc student
-ktadd -k /var/lib/kerberos/krb5kdc/kadm5.keytab kadmin/admin kadmin/changepw
-exit
+kadmin.local: ktadd -k /var/lib/kerberos/krb5kdc/kadm5.keytab kadmin/admin kadmin/changepw
+kadmin.local: exit
 ```
 
 Start the kerberos services and make sure they are running correctly.
 
 ```console
-kdc# service krb5kdc start
-kdc# service kadmind start
+kdc:~# service krb5kdc start
+kdc:~# service kadmind start
 ```
 
 > [!TIP]

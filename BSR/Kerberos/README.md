@@ -32,8 +32,8 @@ You will divide between yourselves the following roles:
 First, once you know which role you are responsible for,
 start by setting your hostname to the corresponding domain name:
 
-```shell
-hostname <DOMAIN_NAME>
+```console
+kdc:~# hostname <DOMAIN_NAME>
 ```
 
 > [!CAUTION]
@@ -45,9 +45,9 @@ Now, we will make sure _each_ machine is ready to use Kerberos.
 The laboratory will require the following packages: `krb5`, `krb5-client` and `krb5-server`.
 You should check if your system has them:
 
-```shell
+```console
 # check what is already installed
-sudo zypper se krb5
+kdc:~# zypper se krb5
 ``` 
 
 <details>
@@ -55,8 +55,8 @@ sudo zypper se krb5
 
 To install the packages, use:
 
-```shell
-sudo zypper in krb5 krb5-server krb5-client
+```console
+kdc:~# zypper in krb5 krb5-server krb5-client
 ```
 
 Of course, if only some are missing, you can install only those.
