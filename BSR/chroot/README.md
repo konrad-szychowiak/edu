@@ -159,3 +159,7 @@ Add them to the sandbox.
 Does it work now?
 
 Confirm it by running `id wwwrun` directly using chroot, without relying on bash.
+
+## APACHE
+
+Your final task is to show APACHE running sandboxed, according to the instructions in the lab materials on the lecturer's website.
