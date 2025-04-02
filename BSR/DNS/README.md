@@ -403,9 +403,10 @@ Set the slave server as forwarding one:
 
 Copy the master public key for the zone (KSK or ZSK) to a file in the trusted-keys format:
 ```diff
-    trusted-keys {
-+       "lab.net." 256 3 10 "AwEAAcWDps...lM3NRn/G/R";
-    };
+  # /etc/named.conf
++ trusted-keys {
++     "lab.net." 256 3 10 "AwEAAcWDps...lM3NRn/G/R";
++ };
 ```
 
 And then verify:
