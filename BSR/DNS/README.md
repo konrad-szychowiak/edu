@@ -81,11 +81,11 @@ ip addr add 10.X.1.Y/16 dev Z
 > **Modify it accordingly!**
 
 ```console
-master:~# ip a add 10.0.1.1 dev br0
+master:~# ip a add 10.0.1.1/16 dev br0
 ```
 
 ```console
-slave:~# ip a add 10.0.1.2 dev br0
+slave:~# ip a add 10.0.1.2/16 dev br0
 ```
 
 </details>
@@ -121,7 +121,7 @@ include "/etc/named.conf.include";
 Once ready, download `/etc/named.conf.include` and `/var/lib/named/lab.net.zone` from course resources.
 
 You need to modify `/var/lib/named/lab.net.zone`
-to include the correct addresses od `dns1` (_master_) and `dns2` (_slave_),
+to include the correct addresses of `dns1` (_master_) and `dns2` (_slave_),
 according to your group's addresses set a moment ago.
 
 > [!NOTE]
@@ -343,9 +343,9 @@ Replace the zone filename in your DNS server configuration:
 
   zone "lab.net" in {
       type master;
-      file "lab.net.zone";
-      notify master-only;
+-     file "lab.net.zone";
 +     file "/var/lib/named/lab.net.zone.signed";
+      notify master-only;
   };
 ```
 
@@ -390,12 +390,12 @@ lab.net.   86400 IN RRSIG SOA 10 2 600 (
 Set the slave server as forwarding one:
 ```diff
     options {
-        ...
-+       forward only;
-+       forwarders {
+      ...
++     forward only;
++     forwarders {
 +       master_server_IP_address;
-    };
-    ...
+      };
+      ...
 ```
 
 Copy the master public key for the zone (KSK or ZSK) to a file in the trusted-keys format:
