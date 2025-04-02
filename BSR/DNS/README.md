@@ -1,7 +1,10 @@
-# DNS
+DNS
+===
 
-## Introduction
 
+
+Introduction
+------------
 > [!TIP]
 >Some useful tools to query name servers:
 > * `nslookup` – should be available everywhere
@@ -26,8 +29,10 @@ You should find two things:
 > host -t mx megacorpone.com
 > ```
 
-## Your own DNS
 
+
+Your own DNS
+------------
 We will set up our own DNS service using the master-slave architecture.
 Each service needs a master and at least one slave.
 
@@ -48,25 +53,30 @@ ip addr add 10.X.1.Y/16 dev Z
 #              └──────────────> the same # as lab-sec-# of master
 ```
 
+---
+
 <details>
-<summary><i>Example</i></summary>
+<summary><i>Example: IP addresses</i></summary>
 
-For the sake of further examples, let's say that I'm `lab-sec-0` and the _master_,
-and both me and my _slave_ are connected to the lab network on interface `br0`.
+> [!WARNING]
+> The example below assumes the master is `lab-sec-0`,
+> and both the _master_ and the _slave_ are connected to the lab network on interface `br0`.
+> **Modify it accordingly!**
 
-Then, I'd type in:
 ```console
 master:~# ip a add 10.0.1.1 dev br0
 ```
 
-And the _slave_ (whichever `lab-sec-#` they are), would write:
 ```console
 slave:~# ip a add 10.0.1.2 dev br0
 ```
 </details>
 
-### Bind9
+---
 
+
+
+### Bind9
 We will be using a self-hosted name server called `bind9` for our exercises.
 
 First, see if bind is installed in your system:
@@ -110,20 +120,24 @@ dig @localhost mail.lab.net
 
 **Then, you can check both your and your groupmate's services.**
 
+---
+
 <details>
-<summary><i>Example</i></summary>
+<summary><i>Example: verify the first name services</i></summary>
 
-\[Assuming I'm `lab-sec-0` and the _master_.]
+> [!WARNING]
+> The example below assumes the master is `lab-sec-0`. **Modify it accordingly!**
 
-We—the _master_ and the _slave_—should both be able to run...
-
+Both the machines should be able to execute:
 ```shell
 dig @10.0.1.1 mail.lab.net
 dig @10.0.1.2 mail.lab.net
 ```
 
-... and get the correct (and matching) information from both. 
+The results should be matching for both.  
 </details>
+
+---
 
 ### Setting up `slave`
 
@@ -138,7 +152,9 @@ Now, we want the assigned _slave_ to actually listen to the _master_ service
 
 **Modify the configuration of the _slave_** to reflect their role: change the `type` to `slave` and point to the `master server`.
 
-_Assuming the master is `lab-sec-0` and their IP is `10.0.1.1`, the configuration will look as follows_ (modify it with your relevant IP addresses):
+
+> [!WARNING]
+> The example below assumes the master is `lab-sec-0`. **Modify it accordingly!**
 
 ```
 # /etc/named.conf.include
@@ -160,23 +176,30 @@ If the slave replicates the change, it means the system is functioning correctly
 > You can modify the zone definition by incrementing both the `serial` and the last byte of `mail.lab.net`'s IP.
 > **Remember to reload the master's `named` service afterward.**
 
+---
+
 <details>
-<summary><i>Testing example</i></summary>
+<summary><i>Example: testing master-slave relationship</i></summary>
 
-\[Assuming I'm `lab-sec-0` and the _master_.]
+> [!WARNING]
+> The example below assumes the master is `lab-sec-0`._ **Modify it accordingly!**
 
-Querying both dns servers must return the same information.
+After modifying the zone definition and reloading the name daemon (both on _master_),
+querying both dns servers must return the same information:
 ```shell
 dig @10.0.1.1 mail.lab.net
 dig @10.0.1.2 mail.lab.net
 ```
 </details>
 
-### Transaction Signature
+---
 
+
+
+### Transaction Signature
+#### On Master
 Generate a key for TSIG:
 
-#### On Master
 ```console
 master:~# tsig-keygen -a hmac-sha512 transfer_key > /var/lib/named/transfer.key
 ```
@@ -187,15 +210,15 @@ Include the key file into your configuration file (the include file)
 and allow transfer for our zone based on that key.
 
 ```diff
-    # /etc/named.conf.include
-+   include "/var/lib/named/transfer.key";
-
-    zone "lab.net" in {
-        type master;
-        file "lab.net.zone";
-        notify master-only;
-+       allow-transfer { key transfer_key; };
-    };
+  # /etc/named.conf.include
++ include "/var/lib/named/transfer.key";
++
+  zone "lab.net" in {
+      type master;
+      file "lab.net.zone";
+      notify master-only;
++     allow-transfer { key transfer_key; };
+  };
 ```
 
 #### On Slave
@@ -205,19 +228,24 @@ or secure-copy it from the master machine (agree on which to do with your groupm
 
 Modify your config to include the key and assign the key to the `master_server`.
 
-\[_The example below assumes the master is `lab-sec-0`._ **Modify it accordingly!**]
+> [!WARNING]
+> The example below assumes the master is `lab-sec-0`._ **Modify it accordingly!**
 
 ```diff
-    # /etc/named.conf.include
-+   include "/var/lib/named/transfer.key";
-
-+   masters master_server { 10.8.1.1 key transfer_key; };
-    
-    zone "lab.net" in {
-          type slave;
--         masters { 10.8.1.1; };
-+         masters { master_server; };
-          file "lab.net.zone";
-          notify master-only;
-    };
+ # /etc/named.conf.include
++ include "/var/lib/named/transfer.key";
++
++ masters master_server { 10.0.1.1 key transfer_key; };
++    
+  zone "lab.net" in {
+        type slave;
+-       masters { 10.0.1.1; };
++       masters { master_server; };
+        file "lab.net.zone";
+        notify master-only;
+  };
 ```
+
+#### On Both
+
+Verify that the slave still reflects the changes from the master after the key is added.
