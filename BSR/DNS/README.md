@@ -309,6 +309,9 @@ However, if we need to change the KSK (when, for example, it is already nearing 
 
 #### Master Server
 
+> [!CAUTION]
+> The keys must be created using `-L` for ttl.
+
 Create ZSK:
 
 ```console
@@ -442,6 +445,9 @@ Flags are:
 - `rd` – recursion desired,
 - `ra` – recursion available,
 - `ad` – authenticated data.
+
+> [!CAUTION]
+> The command below is partly deprecated. You can skip it for now.
 
 ```console
 student@slave:~$ delv +multiline @<dns_server> lab.net -a <public_key_file> +root=lab.net
