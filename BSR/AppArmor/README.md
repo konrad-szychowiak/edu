@@ -16,7 +16,7 @@ agent007@lab-sec-0:/~$ echo $PATH
 
 ```console
 lab-sec-0:~# su --shell /bin/rbash -l agent007 
-agent007@lab-sec-1:~$ ps
+agent007@lab-sec-0:~$ ps
   PID TTY          TIME CMD
  4953 pts/3    00:00:00 rbash
  5006 pts/3    00:00:00 ps
@@ -26,8 +26,8 @@ drwxr-xr-x 1 agent007 users 0 Mar 15  2022 bin
 ```
 
 ```console
-lab-sec-0:~ # chsh --shell /bin/rbash agent007
-lab-sec-0:~ # su -l agent007
+lab-sec-0:~# chsh --shell /bin/rbash agent007
+lab-sec-0:~# su -l agent007
 agent007@lab-sec-0:~$ echo $PATH
 /usr/lib/restricted/bin
 ```
@@ -41,3 +41,8 @@ shell returned 1
 
 Press ENTER or type command to continue
 ```
+
+---
+
+# AppArmor
+
