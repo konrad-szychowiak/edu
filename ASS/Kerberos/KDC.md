@@ -58,7 +58,7 @@ If that works, you can continue with KDC's configuration.
 Modify the ACLs for the KDC. In the `/var/lib/kerberos/krb5kdc/kadm5.acl` file. Paste:
 ```
 */admin@LAB.LAN *
-* */*@LAB.LAN and
+*/*@LAB.LAN i
 ```
 
 Next, we will want to create users.
