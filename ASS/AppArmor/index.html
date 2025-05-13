@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+</head>
+<body>
+<textarea id="source">
+class: middle
+
+# AppArmor and Restricted Shells
+
+1. Restricted Bash (`/bin/rbash`)
+2. Basic AppArmor Profiling (`aa-genprof`, etc.)
+3. Your own custom restricted shell (`~/confined_bash`)
+
+---
+class: middle
+# Restricted Shell
+
+### Setting Up Environment
+
+```console
+lab-sec-0:~# useradd -m agent007
+lab-sec-0:~# ln /bin/bash /bin/rbash
+lab-sec-0:~# su --shell /bin/rbash -l agent007
+agent007@lab-sec-0:/~$
+```
+
+---
+class: middle
+### Inspecting Environment
+
+```cosnole
+agent007@lab-sec-0:/~$ echo $PATH
+/usr/lib/restricted/bin
+```
+
+Let's try running something.
+
+```console
+lab-sec-0:~# su --shell /bin/rbash -l agent007
+agent007@lab-sec-0:~$ ps
+  PID TTY          TIME CMD
+ 4953 pts/3    00:00:00 rbash
+ 5006 pts/3    00:00:00 ps
+agent007@lab-sec-0:~$ ls -l
+total 0
+drwxr-xr-x 1 agent007 users 0 Mar 15  2022 bin
+```
+--
+```console
+lab-sec-0:~# chsh --shell /bin/rbash agent007
+lab-sec-0:~# su -l agent007
+agent007@lab-sec-0:~$ echo $PATH
+/usr/lib/restricted/bin
+```
+--
+Add `vi` to your `restricted/bin/` and see if you can use it to escape the confines of the `rbash`.
+
+---
+class: middle
+# AppArmor
+
+1. Write a script
+    ```bash
+    #!/bin/bash
+
+    file=~/sample.txt
+    [ $1 ] && file=$1
+
+    touch $file && echo "File $file created"
+    rm $file    && echo "File $file deleted"
+    ```
+1. Start the police generator and STOP!
+    ```console
+    lab-net-X:~# aa-genprof <app>
+    ```
+1. Use AppArmor GUI to inspect how the policy can be created
+1. Use the in-console generator (`aa-genprof`) this time and set up a policy for your script
+
+---
+class: middle
+# Exercises
+
+1. Create a new shell about to be confined:
+    ```bash
+    cp /bin/bash /bin/confined_bash
+    ```
+1. Use aa-autodep to create an initial profile for this confined shell. Check the profile.
+1. Edit the profile so it will allow users to run id and ls commands.
+
+
+
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create({
+        ratio: '16:9',
+        highlightLines: true,
+    });
+</script>
+</body>
+</html>
