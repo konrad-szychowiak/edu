@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenVPN</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+</head>
+<body>
+<textarea id="source">
+class: middle
+
+# OpenVPN
+1. _Pre-Shared Key_
+    ```shell
+    openvpn --genkey secret shared.key
+    ```
+2. _TLS Mode_
+
+---
+class: middle
+
+## Pre-Shared Key
+
+### Server
+Configure `/etc/openvpn/server.conf`:
+```shell
+proto tcp-server
+dev tun
+ifconfig 10.8.0.1 10.8.0.2
+secret /root/openvpn/shared.key
+keepalive 10 900
+inactive 3600
+cipher aes-256-cbc
+```
+
+---
+class: middle
+
+## Pre-Shared Key
+### Client
+Configure `/etc/openvpn/client.conf`:
+```shell
+proto tcp-client
+# remote <ip_serwera> <port_serwera>
+remote 150.254.32.19 1194
+dev tun
+ifconfig 10.8.0.2 10.8.0.1
+secret /root/openvpn/shared.key
+keepalive 10 60
+cipher aes-256-cbc
+```
+
+---
+class: middle
+## TLS
+Wykorzystany zostanie skrypt CA.pl z katalogu /usr/share/ssl/misc
+1. Zaczynamy od utworzenia nowego urzędu certyfikacji CA:
+```shell
+./CA.pl -newca
+```
+
+2. Następnie należy wygenerować element pierwotny grupy dla metody Diffiego-Helmana:
+```shell
+openssl dhparam -out dh.pem 2048
+```
+
+3. Utworzenie pary kluczy dla danej strony tunelu i zgłoszenia do podpisania klucza publicznego:
+```shell
+./CA.pl -newreq
+```
+Należy prawidłowo podać wszystkie dane niezbędne do utworzenia certyfikatu dla danej strony
+tunelu, przy czym najważniejsz jest pole Common Name.
+
+4. podpisanie klucza publicznego, czyli wystawienie certyfikatu:
+```shell
+./CA.pl -sign
+```
+---
+class: middle
+
+## TLS
+### Server
+```diff
+    proto tcp-server
+    dev tun
+    ifconfig 10.8.0.1 10.8.0.2
+-   secret /root/openvpn/shared.key
++   ##########TLS#########################
++   tls-server
++   verify-x509-name lab-sec-44 name
++   ca cacert.pem
++   dh dh.pem
++   cert newcert.pem
++   key newkey.pem
++   ######################################
+    persist-tun
+    persist-local-ip
+    persist-remote-ip
+    persist-key
+    mlock
+    cipher aes-256-cbc
+    keepalive 5 240
+    inactive 3600
+```
+
+---
+class: middle
+
+## TLS
+### Client
+```diff
+    proto tcp-client
+    remote 150.254.32.19 1194
+    dev tun
+    ifconfig 10.8.0.2 10.8.0.1
+-   secret /root/openvpn/shared.key
++   #######TLS#####################################
++   tls-client
++   verify-x509-name lab-sec-server name
++   ca cacert.pem
++   cert newcert.pem
++   key newkey.pem
++   ###############################################
+    persist-tun
+    persist-local-ip
+    persist-remote-ip
+    persist-key
+    mlock
+    cipher aes-256-cbc
+```
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create({
+        ratio: '16:9',
+        highlightLines: true,
+    });
+</script>
+</body>
+</html>
