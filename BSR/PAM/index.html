@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+</head>
+<body>
+<textarea id="source">
+
+class: center, middle
+
+# PAM
+
+---
+
+# Plan na dzisiaj
+
+1. Przedstawienie
+2. Czym jest PAM?
+3. Przykład
+4. Materiały
+5. Zadania
+6. Słowo na koniec
+
+---
+
+# Przedstawienie
+- mgr inż. Konrad Szychowiak
+- konrad.szychowiak@cs.put.poznan.pl
+- Subject: \[BSR] ...
+- Zaliczenie na przedostatnich zajęciach
+- Zapis na ekursy
+- Nagrane wykłady
+- Przygotowanie do zajęć
+
+---
+
+# Czym jest PAM?
+- Jak normalnie przebiega autoryzacja w systemie Linux?
+- Gdzie przechowywane są dane uwierzytelniające?
+- Czy słyszeliście kiedyś o PAM?
+- Czym jest PAM i do czego służy?
+- Czy korzystaliście już z VLAB?
+
+## Uwaga!
+
+> Pozostawienie błędnych ustawień w modułach PAM może utrudnić kolejnym grupom przeprowadzenie zajęć laboratoryjnych. Po zakończeniu zajęć koniecznie uruchom system Linux Lokalny Czysty.
+
+---
+
+## Podstawowe informacje
+
+System PAM to zestaw bibliotek (modułów, wtyczek), które są wykorzystywane do uwierzytelniania użytkowników w systemie. Odpowiednia biblioteka jest wykorzystywana gdy polityka uwierzytelniania dla danej aplikacji wywołuje procedurę uwierzytelniającą. Moduły określają też dodatkowe wymagania i zadania systemu uwierzytelniającego, jak np. ograniczenie czasu logowania do konkretnych godzin, określenie różnych źródeł danych o użytkownikach (baza LDAP, MySQL i inne).
+- Zarządzanie uwierzytelnianiem (ang. auth)
+- Zarządzanie kontami (ang. account)
+- Zarządzanie hasłami (ang. password)
+- Zarządzanie sesjami (ang. session)
+
+
+---
+
+# Przykład
+
+1. Znajdźcie i zobaczcie swój plik passwd oraz shadow.
+2. Znajdźcie jakie moduły PAM są zdefiniowane dla demona SSH.
+3. Znajdźcie dokumentację dla pam_nologin (man pam_nologin).
+4. Dodajcie pam_nologin do SSH.
+5. Dodajcie grupę test_group oraz użytkownika test przypisanego do tej grupy.
+
+---
+
+# Materiały
+
+Przeczytajcie materiały do labów: [www.cs.put.poznan.pl/mszychowiak/dydaktyka](https://www.cs.put.poznan.pl/mszychowiak/dydaktyka/?lang=pl)
+
+---
+
+# Zadania
+
+> Uwaga! Praca w parach!
+
+1. **Który moduł PAM odpowiada za zarządzanie czasem logowania użytkowników?**
+    Zezwól użytkownikowi test na logowanie przez ssh we wszystkie robocze dni tygodnia z wyjątkiem poniedziałku, w wybranym 10-minutowym przedziale czasu (czas dobierz tak, by można zweryfikować efekt działania polecenia).
+
+2.  **Który moduł PAM odpowiada za ograniczanie dostępu użytkowników o określonych nazwach ze wskazanych lokalizacji?**
+    Dodaj ten moduł do polityki demona sshd.
+    Zablokuj możliwość logowania przez ssh dla użytkownika test ze zdalnego systemu.
+    Wprowadź w tym module regułę domyślnej odmowy dostępu i zezwól sąsiadowi na dostęp przez SSH dla wszystkich użytkowników spoza grupy test_group.
+
+3. **Który moduł pozwala na weryfikację historii haseł?**
+    Dodaj do uprzednio skonfigurowanych ograniczeń weryfikację, czy wprowadzone hasło jest różne od dwóch poprzednich. Zapewnij, by moduł nie pytał ponownie o podanie już raz wcześniej wprowadzonego hasła.
+
+---
+
+# Słowo na koniec
+
+- Pytania?
+- Przypomnienie o przygotowaniu do zajęć
+
+## Uwaga!
+
+> Pozostawienie błędnych ustawień w modułach PAM może utrudnić kolejnym grupom przeprowadzenie zajęć laboratoryjnych. Po zakończeniu zajęć koniecznie uruchom system Linux Lokalny Czysty.
+
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create();
+</script>
+</body>
+</html>
