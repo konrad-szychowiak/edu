@@ -9,4 +9,5 @@
 # 🇬🇧 Catania University Guest Classes
 ...
 # 🇵🇱 Mikrokurs
-[[Mikrokurs/README|Mikrokurs]] składa się z 3 modułów tematycznych, odpowiadających różnym obszarom problematyki bezpiecznego projektowania i wdrażania współczesnych aplikacji internetowych. Część 1 przedstawia podstawy architektury bezpieczeństwa w systemach IT oraz podstawowe zasady bezpieczeństwa, część 2 – bezpieczeństwo w rozwoju i wdrażaniu oprogramowania, a część 3 – zarządzanie bezpieczeństwem przez analizę podatności i ocenę ryzyka.
+[Mikrokurs](Mikrokurs/README.md) składa się z 3 modułów tematycznych, odpowiadających różnym obszarom problematyki bezpiecznego projektowania i wdrażania współczesnych aplikacji internetowych. Część 1 przedstawia podstawy architektury bezpieczeństwa w systemach IT oraz podstawowe zasady bezpieczeństwa, część 2 – bezpieczeństwo w rozwoju i wdrażaniu oprogramowania, a część 3 – zarządzanie bezpieczeństwem przez analizę podatności i ocenę ryzyka.
+
