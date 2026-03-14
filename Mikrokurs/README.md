@@ -3,4 +3,4 @@ aliases:
   - Mikrokurs
 ---
 # Moduły Mikrokursu
-- [Docker](0.%20Plan.md)
+- [[0. Plan.md|Docker]]
