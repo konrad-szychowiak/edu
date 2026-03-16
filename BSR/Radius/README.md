@@ -69,6 +69,8 @@ $ radtest -x bob bob 127.0.0.1 10000 testing123
 > [!WARNING]
 > Zanim zaczniesz zadania, zakomentuj/wyrzuć `bob`-a z `/etc/raddb/users`.
 
+
+
 ## Zadanie: (4) Skonfiguruj współpracę serwera FreeRADIUS z bazą danych PostgreSQL.
 
 Zainstaluj Postgresa:
@@ -96,9 +98,32 @@ dialect = "postgresql"
 radius_db = "dbname=radius host=localhost user=radius password=raddpass"
 ```
 
+i odblokować w pliku `/etc/raddb/mods-enabled/sql` ustawienia postgresql:
+```
+sql {
+driver = "rlm_sql_postgresql"
+}
+dialect = "postgresql"
+postgresql {
+send_application_name = yes
+}
+```
+oraz parametry połączenia z bazą (connect string):
+```
+# Connection info:
+server = "localhost"
+login = "radius"
+password = "radpass"
+radius_db = "radius"
+```
+
+
+> [!WARNING]
+> W konfiguracji wdrożeniowej w rzeczywistym systemie produkcyjnym należy koniecznie zmienić te parametry, zwłaszcza dane uwierzytelniające!
+
 ```console
 # su - postgres
-$ psql -c "CREATE USER radius WITH PASSWORD 'raddpass';"
+$ psql -c "CREATE USER radius WITH PASSWORD 'radpass';"
 $ psql -c "CREATE DATABASE radius OWNER radius;"
 ```
 
