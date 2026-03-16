@@ -1,77 +1,28 @@
 # Local Authentication
 
 - [~85min] Lokalne: basic auth (login+passwd), api key/token, cert, challenge response:
-    
-
 - guided – jak można złamać basic auth: atak słownikowy na hasło ~15min ???
-    
 - guided – jak złamać token? downgrade attack? złamanie podpisu? replay attack bez expiry? ~15min ???
-    
 - independent – collision attack na hash hasła (nie zasolony) ~20 min
-    
 - guided – złamanie podpisu, kiedy nie możesz zrobić replay: with expiry? ~20min
-    
-
-  
 
 ## Engage
-
-Engage is the first phase of the 5E model. During this phase, teachers are activating students’ prior knowledge to identify what students know or do not know about the upcoming concept. As teachers tap into students’ background knowledge, students can make connections and teachers can identify any knowledge gaps. This phase also serves to pique students’ interest and curiosity about the topic at hand. To engage students, ask open-ended questions, lead a class discussion, or view videos to introduce a concept.
-
-  
-
 - aktywacja wiedzy: jakie znamy rodzaje i sposoby uwierzytelniania i poświadczenia tożsamości? jak działa basic auth i jak działają tokeny ~5min, w tym:
-    
-
-  
 
 ## Explore
-
-During the Explore phase, teachers are guiding students in exploration and problem-solving in a concrete way. Through hands-on activities, such as creating models or conducting experiments, students can investigate the new concept and discuss ideas and observations with their peers.
-
-  
-
 - jakiś przykład/zadanie, które pozwoli studentom zidentyfikować i zobaczyć praktyczne działanie różnych mechanizmów uwierzytelnienia
-    
-
 - basic auth
-    
 - bearer
-    
 - api key
-    
 - session cookies
-    
-
 - łamanie zabezpieczeń jako osobna „lekcja”?
-    
-
-  
 
 ## Explain
-
-The Explain phase is run by the teacher. During this phase, the teacher facilitates a whole-class discussion by asking questions, comparing student responses, and helping to guide the class towards the key ideas being taught.
-
-  
-
-- guide the students to how and when use different techniques
-    
+- guide the students to how and when use different techniques 
 - bezpieczeństwo różnych rozwiązań i opcje podszywania się i łamania zabezpieczeń
-    
 
 ## Elaborate
-
-During the Elaborate phase, students have the space to apply what they learned. They can take their new knowledge to form a new hypothesis, explore real-world scenarios, or create a presentation to share with their peers. This phase allows students to extend their learning and create richer connections to concepts.
-
-  
-
 - studenci projektują uwierzytelnianie w swojej aplikacji
-    
 
 ## Evaluate
-
-At this phase, the teacher assesses student learning through formal and/or informal assessments. Informal assessments, like exit tickets or oral presentations, or formal assessments, like tests or quizzes, can be used to determine whether students understood the key concepts. During this phase, students can also evaluate their learning using self-assessment tools like rubrics.
-
-  
-
 - ocena projektu studentów

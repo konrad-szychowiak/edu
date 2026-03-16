@@ -1,6 +1,6 @@
 ![Logo Politechniki](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fusosapd.put.poznan.pl%2Fstatic%2Fusos%2Fimg%2Fput-logo%2Ffooter-logo.png&f=1&nofb=1&ipt=7c57ceba1ff5f4c904ca91d519fd09a31335c2e281360387f371af43916ffa43)
 # Educational Resources. Konrad Szychowiak
-_Zasoby Edukacyjne
+_Zasoby Edukacyjne_
 
 > [!NOTE]
 > 🇬🇧 This is a temporary repository of teaching materials I've prepared for my students. They include presentations and tutorials. For English-language resources see: [Advanced Systems Security](#Advanced%20Systems%20Security) and [Catania University Guest Classes](#Catania%20University%20Guest%20Classes).
@@ -10,7 +10,7 @@ _Zasoby Edukacyjne
 
 ---
 ## Advanced Systems Security
- 🇬🇧 [README](ASS/README.md) is a course for the students of _Cybersecurity_ master programme. 
+ 🇬🇧 [ASS/](ASS/README.md) is a course for the students of _Cybersecurity_ master programme. 
 
 ---
 ## Catania University Guest Classes
