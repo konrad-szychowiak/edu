@@ -3,12 +3,7 @@
 Wait for `/edc/hosts` and `/edc/krb5.conf` to be ready.
 
 > [!NOTE]
-<<<<<<< Updated upstream:ASS/Kerberos/Server.md
-> If your KDC asks you too, set up `/etc/hosts` based on the [tutorial for KDC](KDC.md.md)
-=======
-> If your KDC asks you too, set up `/etc/hosts` based on the [[KDC|tutorial for KDC]]
->>>>>>> Stashed changes:BSR/Kerberos/Server.md
-and copy it to the other computers.
+> If your KDC asks you too, set up `/etc/hosts` based on the [[KDC|tutorial for KDC]] and copy it to the other computers.
  
 Once they are ready, you've reached [checkpoint 1](#checkpoint-1).
 

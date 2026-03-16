@@ -71,11 +71,5 @@ The next steps are divided into the three roles mentioned earlier.
 > Also, while waiting for other students to finish, you can help them do their part
 > to get more out of the exercises.
 
-<<<<<<< Updated upstream:ASS/Kerberos/README.md
-The tasks for [KDC](KDC.md.md) are discussed first,
-followed by [server](Server.md.md) and [client](#client).
-=======
-The tasks for [[KDC]] are discussed first,
-followed by [[Server|server]] and [[#client|client]].
->>>>>>> Stashed changes:BSR/Kerberos/README.md
-Those links will led you to your sections.
+The tasks for [[KDC]] are discussed first, followed by [[Server|server]] and [[#client|client]].
+Those links will lead you to your sections.
