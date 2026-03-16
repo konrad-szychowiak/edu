@@ -40,7 +40,7 @@ Alternatywnie można też uruchomić serwer „ręcznie” w trybie diagnostyczn
 W poniższych zadaniach wykorzystamy tylko Radiusa z plikiem definiującym użytkowników, jeszcze bez bazy danych.
 
 ## Zadanie 1. Skonfiguruj klienta FreeRADIUS
-![[Pasted image 20260316155214.png]]
+![Pasted image 20260316155214](Pasted%20image%2020260316155214.png)
 
 ## Zadanie 2. Zdefiniuj użytkownika w bazie plikowej `/etc/raddb/users`
 ```
@@ -67,7 +67,7 @@ $ radtest -x bob bob 127.0.0.1 10000 testing123
 # PostgreSQL
 
 > [!WARNING]
-> Zanim zaczniesz zadania, wykomentuj `bob`-a z `/etc/raddb/users`.
+> Zanim zaczniesz zadania, zakomentuj/wyrzuć `bob`-a z `/etc/raddb/users`.
 
 ## Zadanie: (4) Skonfiguruj współpracę serwera FreeRADIUS z bazą danych PostgreSQL.
 ```console

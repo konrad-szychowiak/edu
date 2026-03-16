@@ -71,6 +71,6 @@ The next steps are divided into the three roles mentioned earlier.
 > Also, while waiting for other students to finish, you can help them do their part
 > to get more out of the exercises.
 
-The tasks for [[KDC.md]] are discussed first,
-followed by [[Server.md|server]] and [[#client|client]].
+The tasks for [KDC](KDC.md.md) are discussed first,
+followed by [server](Server.md.md) and [client](#client).
 Those links will led you to your sections.

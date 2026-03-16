@@ -5,15 +5,15 @@ DNS
 
 <!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
-- [[#bind9|Bind9]]
-- [[#setting-up-slave|Setting up `slave`]]
-- [[#transaction-signature|Transaction Signature]]
-    * [[#on-master|On Master]]
-    * [[#on-slave|On Slave]]
-    * [[#on-both|On Both]]
-- [[#zone-signing|Zone Signing]]
-    * [[#master-server|Master Server]]
-    * [[#forwarding-slave-server|Forwarding Slave Server]]
+- [Bind9](#bind9)
+- [Setting up `slave`](#setting-up-slave)
+- [Transaction Signature](#transaction-signature)
+    * [On Master](#on-master)
+    * [On Slave](#on-slave)
+    * [On Both](#on-both)
+- [Zone Signing](#zone-signing)
+    * [Master Server](#master-server)
+    * [Forwarding Slave Server](#forwarding-slave-server)
 
 <!-- TOC end -->
 

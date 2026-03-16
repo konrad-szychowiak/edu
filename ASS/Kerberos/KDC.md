@@ -41,7 +41,7 @@ At the very end of the file, add
 Copy both `/etc/krb5.conf` and `/etc/hosts` files to the other computers in the group.
 If the **client** prepared `/etc/hosts` copy that file from the client's computer to the other machines. 
 
-Let the others know that you've reached [[#checkpoint-1|checkpoint 1]].
+Let the others know that you've reached [checkpoint 1](#checkpoint-1).
 
 
 

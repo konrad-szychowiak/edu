@@ -3,10 +3,10 @@
 Wait for `/edc/hosts` and `/edc/krb5.conf` to be ready.
 
 > [!NOTE]
-> If your KDC asks you too, set up `/etc/hosts` based on the [[KDC.md|tutorial for KDC]]
+> If your KDC asks you too, set up `/etc/hosts` based on the [tutorial for KDC](KDC.md.md)
 and copy it to the other computers.
  
-Once they are ready, you've reached [[#checkpoint-1|checkpoint 1]].
+Once they are ready, you've reached [checkpoint 1](#checkpoint-1).
 
 ## Checkpoint 1
 
@@ -16,7 +16,7 @@ First of all, check if you can see the other computers by the domain names:
 > [!NOTE]
 > If there are more people in your group, `ping` them too. 
 
-If the communication works, wait for your KDC to tell you that you've reached [[#checkpoint-2|checkpoint 2]] 
+If the communication works, wait for your KDC to tell you that you've reached [checkpoint 2](#checkpoint-2) 
 
 ## Checkpoint 2
 

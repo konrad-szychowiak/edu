@@ -57,7 +57,7 @@ Zastanów się i odpowiedz na poniższe pytania. Zrób to bez sprawdzania odpowi
 > - Rozpatrzenie różnych przykładów przez studentów
 > - Dopasowanie przykładów do zadań
 
-![[AAA in Layers#^aaa-l1]]
+![](AAA%20in%20Layers.md#^aaa-l1)
 
 ## Explain
 
