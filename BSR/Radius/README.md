@@ -70,12 +70,25 @@ $ radtest -x bob bob 127.0.0.1 10000 testing123
 > Zanim zaczniesz zadania, zakomentuj/wyrzuć `bob`-a z `/etc/raddb/users`.
 
 ## Zadanie: (4) Skonfiguruj współpracę serwera FreeRADIUS z bazą danych PostgreSQL.
+
+Zainstaluj Postgresa:
 ```console
 # zypper in postgresql postgresql-server
 # service postgresql start
 # ss -ltp
 ```
 
+Skonfiguruj dostęp do serwera Postgres na podstawie hasła:
+```console
+# vi /var/lib/pgsql/data/pg_hba.conf
+local	all	all					password
+host	all	all	127.0.0.1/32	password
+...
+								^ tutaj zmień wszystkie pola na password
+# service postgresql reload
+```
+
+Kontynuuj z inicjalizacją i ustawieniem wszystkich zmiennych:
 ```console
 # ln -s /etc/raddb/mods-available/sql /.../mods-enabled/
 # vi /etc/raddb/mods-enabled/sql
@@ -95,16 +108,10 @@ $ rpm -ql freeradius-server-postgresql
 /etc/raddb/mods-config/sql/main/postgresql/schema.sql
 /etc/raddb/mods-config/sql/main/postgresql/setup.sql
 ...
-$ psql -d radius -a -f /etc/raddb/mods-config/sql/main/postgresql/schema.sql
 ```
 
-
 ```console
-# vi /var/lib/pgsql/data/pg_hba.conf
-local	all	all					password
-host	all	all	127.0.0.1/32	password
-# service postgresql reload
-# psql -U radius -a -f /.../schema.sql
+$ psql -d radius -a -f /etc/raddb/mods-config/sql/main/postgresql/schema.sql
 # psql -U radius -a -f /.../setup.sql
 ```
 
