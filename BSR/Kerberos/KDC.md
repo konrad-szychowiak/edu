@@ -1,3 +1,6 @@
+#5e #bsr #kerberos
+
+![Static Badge](https://img.shields.io/badge/version-v1-blue?style=for-the-badge)
 # `kdc.lab.lan`
 
 ## Set-up

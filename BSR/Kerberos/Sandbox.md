@@ -1,8 +1,8 @@
 # Kerberos
 
-![Static Badge](https://img.shields.io/badge/version-v0-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/version-v1-blue?style=for-the-badge)
 
-Kerberos is a distributed cryptographic authentication system with a trusted third party. The role of this party, which is trusted by all the entities in the system (principals), is performed by the KDC (Key Distribution Center) server, which performs the authentication and - potentially (though rarely in practice to the full extent of its meaning) - authorisation services.
+**Kerberos** is a distributed cryptographic authentication system with a trusted third party. The role of this party, which is trusted by all the entities in the system (principals), is performed by the KDC (Key Distribution Center) server, which performs the authentication and - potentially (though rarely in practice to the full extent of its meaning) - authorisation services.
 The system uses a central register of credentials. Entities (users, computers applications) receive a ticket from the KDC containing, among other things, the session key used to access individual services, e.g. remote login, printing, etc. Each client computer and each user in the authentication domain (realm) must be individually attached to it.
 
 [[Kerberos 5E]]
