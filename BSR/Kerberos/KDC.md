@@ -22,7 +22,7 @@ It should have at least the following options:
         kdc = kdc.lab.lan
         admin_server = kdc.lab.lan
     }
-[domain_realm].
+[domain_realm]
     .lab.lan = LAB.LAN
 ```
 
