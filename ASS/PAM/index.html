@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body { font-family: 'Droid Serif'; }
+        h1, h2, h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: normal;
+        }
+        .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+</head>
+<body>
+<textarea id="source">
+class: center, middle
+
+# PAM
+
+---
+
+# Today's Plan
+
+1. Introduction
+2. What is PAM?
+3. Example
+4. Materials
+5. Tasks
+6. A final word
+
+---
+
+# Introduction
+- Konrad Szychowiak, M.Sc. Eng.
+- konrad.szychowiak@cs.put.poznan.pl
+- Subject: \[BSR] ...
+- Assessment during the penultimate class
+- Registration for e-courses
+- Recorded lectures
+- Preparing for classes
+
+---
+
+# What is PAM?
+- How does authentication normally work in a Linux system?
+- Where are credentials stored?
+- Have you ever heard of PAM?
+- What is PAM and what is it used for?
+- Have you used VLAB yet?
+
+## Warning!
+
+> Leaving incorrect settings in PAM modules may make it difficult for subsequent groups to conduct lab sessions. After completing the course, be sure to boot into the Linux Clean Local system.
+
+---
+
+## Basic Information
+
+The PAM system is a set of libraries (modules, plugins) used to authenticate users in the system. The appropriate library is used when the authentication policy for a given application invokes the authentication procedure. Modules also define additional requirements and tasks for the authentication system, such as limiting login time to specific hours and specifying various user data sources (LDAP database, MySQL, etc.).
+- Authentication Management (auth)
+- Account Management (account)
+- Password Management (password)
+- Session Management (session)
+
+---
+
+# Example
+
+1. Locate and view your passwd and shadow files.
+2. Identify the PAM modules defined for the SSH daemon.
+3. Find the documentation for pam_nologin (man pam_nologin).
+4. Add pam_nologin to SSH.
+5. Add the test_group group and the user test assigned to this group.
+
+--
+
+# Materials
+
+Read the lab materials: [www.cs.put.poznan.pl/mszychowiak/dydaktyka](https://www.cs.put.poznan.pl/mszychowiak/dydaktyka/?lang=pl)
+
+---
+
+# Tasks
+
+> Attention! Work in pairs!
+
+1. **Which PAM module is responsible for managing user login times?**
+Allow user test to log in via SSH on all weekdays except Monday, during a selected 10-minute interval (choose the time so that you can verify the effect of the command).
+
+2. **Which PAM module is responsible for restricting access to users with specific names from specified locations?**
+Add this module to the sshd daemon policy. Block SSH logins for the test user from the remote system.
+
+Introduce a default deny access rule in this module and allow the neighbor SSH access for all users outside the test_group group.
+
+3. **Which module allows password history verification?**
+
+Add to the previously configured restrictions a check to verify that the entered password is different from the previous two. Ensure that the module does not ask for a password that has already been entered once.
+
+---
+
+# A final word
+
+- Questions?
+- Reminder to prepare for class
+
+## Warning!
+
+> Leaving incorrect settings in PAM modules may make it difficult for subsequent groups to conduct labs. After completing the lab, be sure to boot the Linux system into a Local Clean system.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create();
+</script>
+</body>
+</html>
