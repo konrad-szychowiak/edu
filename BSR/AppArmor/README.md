@@ -72,6 +72,8 @@ Press ENTER or type command to continue
     ```
 1. Use AppArmor GUI to inspect how the policy can be created
 1. Use the in-console generator (`aa-genprof`) this time and set up a policy for your script
+2. Switch the profile to the enforce mode `aa-enforce` and check if you can run the script.
+3. Now modify the script to point you to a different file and folder. Check the same folder but different file (e.g. ~/sample2.txt) and different directory (e.g. /temp/smaple.txt)
 
 # Exercises
 
