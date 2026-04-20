@@ -75,7 +75,7 @@ Press ENTER or type command to continue
 
 # Exercises
 
-> [!WARINING]
+> [!WARNING]
 > Gdy profiler w środowisku graficznym lub konsolowym zaproponuje użycie regół dla LXC (Linux Conteiners, `.../lxc/...`) _NIE_ wybieraj tej opcji.
 > LXC zapewniają pewne obejścia, które mogą popsuć nasze przykłady i uniemożliwić (lub stanowczo utrudnić) wykonanie zadań.
 
